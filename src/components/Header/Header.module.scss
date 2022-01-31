@@ -1,0 +1,40 @@
+header {
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  border-bottom: 1px solid #EAEAEA;;
+}
+
+.leftSide {
+  display: flex;
+
+  ul {
+    margin: 0;
+    padding-left: 16px;
+
+    li:first-child {
+      font-weight: 700;
+    }
+  }
+}
+
+.imgCart {
+  cursor: pointer;
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  .cart {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}
