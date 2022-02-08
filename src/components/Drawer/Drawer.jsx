@@ -15,7 +15,7 @@ function Drawer({onClickCloseCart, onClickCartRemove, cartSneakers}) {
                 <div className={s.cartItems}>
                     {
                         cartSneakers.map((sn,i) => <div className={s.item} key={sn.title+i}>
-                            <img src={sn.imgUrl} alt="snk1" width="70" height="70"/>
+                            <img src={sn.imageUrl} alt="snk1" width="70" height="70"/>
                             <div className={s.cartInfo}>
                                 <p>{sn.title}</p>
                                 <strong>{sn.price + " руб."}</strong>
