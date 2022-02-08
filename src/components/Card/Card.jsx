@@ -8,14 +8,13 @@ import inactive from "../../assets/fav-inactive.svg";
 import s from "./Card.module.scss";
 
 
-function Card({price, title, imgUrl, onClickCartAdd}) {
+function Card({id, price, title, imgUrl, onClickCartAdd}) {
     const [isCartAdd, setIsCartAdd] = useState(false);
 
     const onClickPlus = () => {
-        onClickCartAdd({price, title, imgUrl});
+        onClickCartAdd({id, price, title, imgUrl});
         setIsCartAdd(!isCartAdd);
     }
-
 
 
     return (
