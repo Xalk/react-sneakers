@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from "../../components/Card/Card";
 
-function Favourites({favouriteSneakers, onClickCartAdd}) {
+function Favourites({favouriteSneakers, onClickCartAdd, onAddFavourite}) {
     return (
         <div className="content">
             <div className="contentTop">
@@ -13,7 +13,10 @@ function Favourites({favouriteSneakers, onClickCartAdd}) {
                         .map((snk, i) => <Card key={snk.title + i}
                                                {...snk}
                                                imageUrl={snk.imageUrl}
-                                               onClickCartAdd={onClickCartAdd}/>)
+                                               onClickCartAdd={onClickCartAdd}
+                                               onAddFavourite={onAddFavourite}
+                                               favourited={true}
+                        />)
                 }
             </div>
         </div>

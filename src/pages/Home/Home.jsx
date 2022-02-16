@@ -2,7 +2,34 @@ import React from 'react';
 import search from "../../assets/search.svg";
 import Card from "../../components/Card/Card";
 
-function Home({searchValue, setSearchValue, onClickCartAdd, onAddFavourite, sneakers}) {
+
+
+function Home({
+                  searchValue,
+                  setSearchValue,
+                  onClickCartAdd,
+                  onAddFavourite,
+                  sneakers,
+                  cartSneakers,
+                  loading,
+
+              }) {
+
+    const renderSneakers = () => {
+        const filteredSnk = sneakers.filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()));
+
+        return (loading ? [...Array(10)] : filteredSnk)
+            .map((snk, i) => <Card
+                                    key={i}
+                                   {...snk}
+                                   onClickCartAdd={onClickCartAdd}
+                                   onAddFavourite={onAddFavourite}
+                                   added={cartSneakers.some(s => Number(s.id) === Number(snk.id))}
+                                   loading={loading}
+                />
+            )
+    }
+
     return (
         <div className="content">
             <div className="contentTop">
@@ -17,17 +44,12 @@ function Home({searchValue, setSearchValue, onClickCartAdd, onAddFavourite, snea
             </div>
             <div className="sneakers">
                 {
-                    sneakers
-                        .filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()))
-                        .map((snk, i) => <Card key={snk.title + i}
-                                               {...snk}
-                                               onClickCartAdd={onClickCartAdd}
-                                               onAddFavourite={onAddFavourite}
-                        />)
+                    renderSneakers()
                 }
             </div>
         </div>
     );
 }
+
 
 export default Home;
