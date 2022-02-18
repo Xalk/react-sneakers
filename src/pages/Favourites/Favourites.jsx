@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Card from "../../components/Card/Card";
+import AppContext from "../../context";
 
-function Favourites({favouriteSneakers, onClickCartAdd, onAddFavourite}) {
+function Favourites({onClickCartAdd, onAddFavourite}) {
+
+    const {favouriteSneakers} = useContext(AppContext);
+
+
     return (
         <div className="content">
             <div className="contentTop">
@@ -10,7 +15,7 @@ function Favourites({favouriteSneakers, onClickCartAdd, onAddFavourite}) {
             <div className="sneakers">
                 {
                     favouriteSneakers
-                        .map((snk, i) => <Card key={snk.title + i}
+                        .map((snk, i) => <Card key={i}
                                                {...snk}
                                                imageUrl={snk.imageUrl}
                                                onClickCartAdd={onClickCartAdd}

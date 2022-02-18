@@ -18,23 +18,26 @@ function Card({
                   onClickCartAdd,
                   onAddFavourite,
                   favourited = false,
-                  added = false,
+                  added,
                   loading,
                   ...props
               }) {
 
-    const [isCartAdd, setIsCartAdd] = useState(added);
+
     const [isFavourite, setIsFavourite] = useState(favourited);
+
+
 
     const onClickPlus = () => {
         onClickCartAdd({id, price, title, imageUrl});
-        setIsCartAdd(!isCartAdd);
     }
 
     const onClickFav = () => {
         onAddFavourite({id, price, title, imageUrl});
         setIsFavourite(!isFavourite);
     }
+
+
 
     return (
         <div className={s.card}>
@@ -64,7 +67,7 @@ function Card({
                             <p>Цена:</p>
                             <strong>{price + " руб."}</strong>
                         </div>
-                        <img src={isCartAdd ? plusActive : plusBtn} alt="plusBtn" className={s.plusBtn}
+                        <img src={added ? plusActive : plusBtn} alt="plusBtn" className={s.plusBtn}
                              onClick={onClickPlus}/>
                     </div>
                 </>
