@@ -17,7 +17,7 @@ function Card({
                   imageUrl,
                   onClickCartAdd,
                   onAddFavourite,
-                  favourited = false,
+                  favourited,
                   added,
                   loading,
                   ...props
