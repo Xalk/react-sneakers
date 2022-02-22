@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import removeCartItem from "../../assets/removeCartItemBtn.svg";
 import arrow from "../../assets/arrow.svg";
-import emptyBox from "../../assets/empty box.png";
+import emptyBox from "../../assets/emptyBox.png";
 
 import s from "./Drawer.module.scss";
+import InfoBox from "../common/InfoBox";
+import AppContext from "../../context";
 
 function Drawer({onClickCloseCart, onClickCartRemove, cartSneakers}) {
+
+    const {setIsCartOpened} = useContext(AppContext);
+
+    const onCloseCart = () => {
+        setIsCartOpened(false)
+    }
+
     return (
         <div className="overlay">
             <div className={s.drawer}>
@@ -48,15 +57,11 @@ function Drawer({onClickCloseCart, onClickCartRemove, cartSneakers}) {
                             </div>
                         </>
 
-                        : <div className={s.infoBlock}>
-                            <img src={emptyBox} alt=""/>
-                            <h2>Корзина пустая</h2>
-                            <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-                            <button className={s.greenBtn}>
-                                <img src={arrow} alt=""/>
-                                Вернуться назад
-                            </button>
-                        </div>
+                        : <InfoBox title={"Корзина пустая"}
+                                   text={"Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
+                                   image={emptyBox}
+                                   onClick={onCloseCart}
+                        />
                 }
 
 

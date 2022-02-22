@@ -78,7 +78,7 @@ function App() {
     }
 
     return (
-        <AppContext.Provider value={{favouriteSneakers, isItemCartAdded}}>
+        <AppContext.Provider value={{favouriteSneakers, isItemCartAdded, setIsCartOpened}}>
             <div className="wrapper">
                 {isCartOpened && <Drawer onClickCloseCart={() => setIsCartOpened(false)}
                                          cartSneakers={cartSneakers}
