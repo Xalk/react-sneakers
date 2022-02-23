@@ -76,9 +76,12 @@ function App() {
     const isItemCartAdded = (id) => {
         return cartSneakers.some(s => Number(s.id) === Number(id))
     }
+   const isItemFavAdded = (id) => {
+        return favouriteSneakers.some(s => Number(s.id) === Number(id))
+    }
 
     return (
-        <AppContext.Provider value={{favouriteSneakers, isItemCartAdded, setIsCartOpened}}>
+        <AppContext.Provider value={{favouriteSneakers, isItemCartAdded,isItemFavAdded, setIsCartOpened}}>
             <div className="wrapper">
                 {isCartOpened && <Drawer onClickCloseCart={() => setIsCartOpened(false)}
                                          cartSneakers={cartSneakers}

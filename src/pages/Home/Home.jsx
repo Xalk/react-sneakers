@@ -1,8 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import search from "../../assets/search.svg";
 import Card from "../../components/Card/Card";
-import AppContext from "../../context";
-
 
 
 function Home({
@@ -15,22 +13,19 @@ function Home({
 
               }) {
 
-    const {isItemCartAdded} = useContext(AppContext);
 
     const renderSneakers = () => {
         const filteredSnk = sneakers.filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()));
         return (loading ? [...Array(10)] : filteredSnk)
             .map((snk, i) => <Card
-                                    key={i}
-                                   {...snk}
-                                   onClickCartAdd={onClickCartAdd}
-                                   onAddFavourite={onAddFavourite}
-                                   added={isItemCartAdded( snk && snk.id)}
-                                   loading={loading}
+                    key={i}
+                    {...snk}
+                    onClickCartAdd={onClickCartAdd}
+                    onAddFavourite={onAddFavourite}
+                    loading={loading}
                 />
             )
     }
-
 
 
     return (

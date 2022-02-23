@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import plusBtn from "../../assets/plusBtn.svg";
 import plusActive from "../../assets/plus-active.svg";
 
@@ -9,6 +9,7 @@ import activeFav from "../../assets/fav-active.svg";
 import s from "./Card.module.scss";
 
 import ContentLoader from "react-content-loader"
+import AppContext from "../../context";
 
 function Card({
                   id,
@@ -24,8 +25,7 @@ function Card({
               }) {
 
 
-    const [isFavourite, setIsFavourite] = useState(favourited);
-
+    const {isItemCartAdded, isItemFavAdded} = useContext(AppContext);
 
 
     const onClickPlus = () => {
@@ -34,9 +34,7 @@ function Card({
 
     const onClickFav = () => {
         onAddFavourite({id, price, title, imageUrl});
-        setIsFavourite(!isFavourite);
     }
-
 
 
     return (
@@ -58,7 +56,7 @@ function Card({
                     <rect x="0" y="203" rx="3" ry="3" width="59" height="24"/>
                     <rect x="130" y="195" rx="3" ry="3" width="32" height="32"/>
                 </ContentLoader> : <>
-                    <img className={s.inactiveBtn} src={isFavourite ? activeFav : inactiveFav} alt=""
+                    <img className={s.inactiveBtn} src={isItemFavAdded(id) ? activeFav : inactiveFav} alt=""
                          onClick={onClickFav}/>
                     <img src={imageUrl} alt="snk" width="133" height="112"/>
                     <p>{title}</p>
@@ -67,7 +65,7 @@ function Card({
                             <p>Цена:</p>
                             <strong>{price + " руб."}</strong>
                         </div>
-                        <img src={added ? plusActive : plusBtn} alt="plusBtn" className={s.plusBtn}
+                        <img src={isItemCartAdded(id) ? plusActive : plusBtn} alt="plusBtn" className={s.plusBtn}
                              onClick={onClickPlus}/>
                     </div>
                 </>
