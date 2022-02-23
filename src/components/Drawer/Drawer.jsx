@@ -78,7 +78,7 @@ function Drawer({onClickCloseCart, onClickCartRemove}) {
                                         <strong>1074 руб.</strong>
                                     </li>
                                 </ul>
-                                <button className={s.greenBtn} onClick={onClickOrder}>Оформить заказ
+                                <button className={s.greenBtn} onClick={onClickOrder} disabled={isLoading}>Оформить заказ
                                     <img src={arrow} alt=""/></button>
                             </div>
                         </>

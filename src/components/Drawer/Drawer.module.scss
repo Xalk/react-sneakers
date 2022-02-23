@@ -139,9 +139,25 @@
     &:active {
       background: darken(#9dd558, 5%);
     }
-    &:disabled{
 
+    &:disabled {
+      background-color: #bebebe;
+      animation: btn-loading 0.8s ease-in-out infinite;
+      cursor: default;
     }
+  }
+}
+
+@keyframes btn-loading {
+  0%{
+    opacity: 1;
+    background-color: #a8c988;
+  }
+  50%{
+    opacity: 0.7;
+  }
+  100%{
+    opacity: 1;
   }
 }
 
@@ -207,6 +223,7 @@
   .greenBtn {
 
     max-width: 245px;
+
     img {
       position: absolute;
       top: 17px;
