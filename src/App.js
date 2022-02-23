@@ -76,12 +76,19 @@ function App() {
     const isItemCartAdded = (id) => {
         return cartSneakers.some(s => Number(s.id) === Number(id))
     }
-   const isItemFavAdded = (id) => {
+    const isItemFavAdded = (id) => {
         return favouriteSneakers.some(s => Number(s.id) === Number(id))
     }
 
     return (
-        <AppContext.Provider value={{favouriteSneakers, isItemCartAdded,isItemFavAdded, setIsCartOpened}}>
+        <AppContext.Provider value={{
+            favouriteSneakers,
+            isItemCartAdded,
+            isItemFavAdded,
+            setIsCartOpened,
+            cartSneakers,
+            setCartSneakers
+        }}>
             <div className="wrapper">
                 {isCartOpened && <Drawer onClickCloseCart={() => setIsCartOpened(false)}
                                          cartSneakers={cartSneakers}
@@ -103,8 +110,8 @@ function App() {
 
                     <Route path="/favourites" exact
                            element={<Favourites
-                                                onClickCartAdd={onClickCartAdd}
-                                                onAddFavourite={onAddFavourite}
+                               onClickCartAdd={onClickCartAdd}
+                               onAddFavourite={onAddFavourite}
                            />}/>
                 </Routes>
 

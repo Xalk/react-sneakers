@@ -2,17 +2,43 @@ import React, {useContext} from 'react';
 import removeCartItem from "../../assets/removeCartItemBtn.svg";
 import arrow from "../../assets/arrow.svg";
 import emptyBox from "../../assets/emptyBox.png";
+import orderComplete from "../../assets/orderComplete.png";
 
 import s from "./Drawer.module.scss";
 import InfoBox from "../common/InfoBox";
 import AppContext from "../../context";
+import axios from "axios";
 
-function Drawer({onClickCloseCart, onClickCartRemove, cartSneakers}) {
+function Drawer({onClickCloseCart, onClickCartRemove}) {
 
-    const {setIsCartOpened} = useContext(AppContext);
+    const {setIsCartOpened, cartSneakers, setCartSneakers} = useContext(AppContext);
+
+
+    const [orderId, setOrderId] = React.useState(null);
+    const [isOrderComplete, setIsOrderComplete] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const onCloseCart = () => {
         setIsCartOpened(false)
+    }
+
+
+    const onClickOrder = async () => {
+        setIsLoading(true);
+        const {data} = await axios.post("https://61f82d51783c1d0017c4461b.mockapi.io/orders", {
+            items: cartSneakers
+        })
+
+        for (let i = 0; i < cartSneakers.length; i++) {
+            const item = cartSneakers[i];
+            await axios.delete(`https://61f82d51783c1d0017c4461b.mockapi.io/cart/${item.id}`);
+        }
+
+
+        setOrderId(data.id);
+        setIsOrderComplete(true);
+        setCartSneakers([]);
+        setIsLoading(false);
     }
 
     return (
@@ -52,14 +78,14 @@ function Drawer({onClickCloseCart, onClickCartRemove, cartSneakers}) {
                                         <strong>1074 руб.</strong>
                                     </li>
                                 </ul>
-                                <button className={s.greenBtn}>Оформить заказ
+                                <button className={s.greenBtn} onClick={onClickOrder}>Оформить заказ
                                     <img src={arrow} alt=""/></button>
                             </div>
                         </>
 
-                        : <InfoBox title={"Корзина пустая"}
-                                   text={"Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
-                                   image={emptyBox}
+                        : <InfoBox title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
+                                   text={isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
+                                   image={isOrderComplete ? orderComplete : emptyBox}
                                    onClick={onCloseCart}
                         />
                 }

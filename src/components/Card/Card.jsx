@@ -18,8 +18,6 @@ function Card({
                   imageUrl,
                   onClickCartAdd,
                   onAddFavourite,
-                  favourited,
-                  added,
                   loading,
                   ...props
               }) {
