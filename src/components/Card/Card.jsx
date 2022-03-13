@@ -27,11 +27,11 @@ function Card({
 
 
     const onClickPlus = () => {
-        onClickCartAdd({id, price, title, imageUrl});
+        onClickCartAdd({id, parentId: id, price, title, imageUrl});
     }
 
     const onClickFav = () => {
-        onAddFavourite({id, price, title, imageUrl});
+        onAddFavourite({id, parentId: id, price, title, imageUrl});
     }
 
 

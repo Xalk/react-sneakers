@@ -9,7 +9,7 @@ import InfoBox from "../common/InfoBox";
 import AppContext from "../../context";
 import axios from "axios";
 
-function Drawer({onClickCloseCart, onClickCartRemove}) {
+function Drawer({onClickCloseCart, onClickCartRemove, isCartOpened}) {
 
     const {setIsCartOpened, cartSneakers, setCartSneakers} = useContext(AppContext);
 
@@ -24,25 +24,32 @@ function Drawer({onClickCloseCart, onClickCartRemove}) {
 
 
     const onClickOrder = async () => {
-        setIsLoading(true);
-        const {data} = await axios.post("https://61f82d51783c1d0017c4461b.mockapi.io/orders", {
-            items: cartSneakers
-        })
+        try{
+            setIsLoading(true);
+            const {data} = await axios.post("https://61f82d51783c1d0017c4461b.mockapi.io/orders", {
+                items: cartSneakers
+            })
 
-        for (let i = 0; i < cartSneakers.length; i++) {
-            const item = cartSneakers[i];
-            await axios.delete(`https://61f82d51783c1d0017c4461b.mockapi.io/cart/${item.id}`);
+            for (let i = 0; i < cartSneakers.length; i++) {
+                const item = cartSneakers[i];
+                await axios.delete(`https://61f82d51783c1d0017c4461b.mockapi.io/cart/${item.id}`);
+            }
+
+            setOrderId(data.id);
+            setIsOrderComplete(true);
+            setCartSneakers([]);
+            setIsLoading(false);
+        }catch (e) {
+            alert("Error");
+            console.log(e);
         }
 
 
-        setOrderId(data.id);
-        setIsOrderComplete(true);
-        setCartSneakers([]);
-        setIsLoading(false);
     }
 
+
     return (
-        <div className="overlay">
+        <div className={`${s.overlay} ${isCartOpened ? s.overlayOut : ""}`}>
             <div className={s.drawer}>
                 <div className={s.drawerTop}>
                     <p>Корзина</p>
@@ -70,12 +77,16 @@ function Drawer({onClickCloseCart, onClickCartRemove}) {
                                     <li>
                                         <p>Итого:</p>
                                         <div></div>
-                                        <strong>21 498 руб.</strong>
+                                        <strong>{
+                                            cartSneakers.reduce((res, item) => res + item.price, 0)
+                                        } руб.</strong>
                                     </li>
                                     <li>
                                         <p>Налог 5%:</p>
                                         <div></div>
-                                        <strong>1074 руб.</strong>
+                                        <strong>{
+                                            (cartSneakers.reduce((res, item) => res + item.price, 0) * 0.05).toFixed(2)
+                                        } руб.</strong>
                                     </li>
                                 </ul>
                                 <button className={s.greenBtn} onClick={onClickOrder} disabled={isLoading}>Оформить заказ
