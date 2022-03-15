@@ -72,6 +72,11 @@ function App() {
 
     }
 
+    const onClickFavRemove = (obj) => {
+        axios.delete(`https://61f82d51783c1d0017c4461b.mockapi.io/favourites/${obj.id}`);
+        setFavouriteSneakers(prev => prev.filter(s => +s.id !== +obj.id))
+    }
+
     const onClickCartRemove = (obj) => {
         axios.delete(`https://61f82d51783c1d0017c4461b.mockapi.io/cart/${obj.id}`);
         setCartSneakers(prev => prev.filter(s => +s.id !== +obj.id))
@@ -79,24 +84,15 @@ function App() {
 
     const onAddFavourite = async (obj) => {
         try {
-            const findItem = favouriteSneakers.find(e => e.parentId === obj.id);
+            const findItem = favouriteSneakers.find(e => +e.parentId === +obj.id);
 
             if (findItem) {
                 axios.delete(`https://61f82d51783c1d0017c4461b.mockapi.io/favourites/${findItem.id}`);
                 setFavouriteSneakers(prev => prev.filter(s => +s.parentId !== +obj.id))
             } else {
-                setFavouriteSneakers(prev => [...prev, obj])
                 let {data} = await axios.post("https://61f82d51783c1d0017c4461b.mockapi.io/favourites", obj);
-                setFavouriteSneakers(prev => prev.map(el => {
-                    if (el.parentId === data.parentId) {
-                        return {
-                            ...el,
-                            id: data.id
-                        }
+                setFavouriteSneakers(prev => [...prev, data]);
 
-                    }
-                    return el;
-                }))
             }
         } catch (e) {
             alert("Error favourites");
@@ -110,7 +106,7 @@ function App() {
         return cartSneakers.some(s => Number(s.parentId) === Number(id))
     }
     const isItemFavAdded = (id) => {
-        return favouriteSneakers.some(s => Number(s.parentId) === Number(id))
+        return favouriteSneakers.some(s => Number(s.parentId) === Number(id));
     }
 
     return (
@@ -120,7 +116,8 @@ function App() {
             isItemFavAdded,
             setIsCartOpened,
             cartSneakers,
-            setCartSneakers
+            setCartSneakers,
+            onClickFavRemove
         }}>
             <div className="wrapper">
                 {<Drawer onClickCloseCart={() => setIsCartOpened(false)}
@@ -140,6 +137,7 @@ function App() {
                                                    onAddFavourite={onAddFavourite}
                                                    cartSneakers={cartSneakers}
                                                    loading={loading}
+                                                   isItemFavAdded={isItemFavAdded}
                     />}/>
 
 

@@ -18,22 +18,31 @@ function Card({
                   imageUrl,
                   onClickCartAdd,
                   onAddFavourite,
-                  loading,
+                  loading = false,
+                  favourited = false,
+                  parentId,
+                  isOnFavPage,
                   ...props
               }) {
 
 
-    const {isItemCartAdded, isItemFavAdded} = useContext(AppContext);
-
+    const {isItemCartAdded, isItemFavAdded, onClickFavRemove} = useContext(AppContext);
+    const [isFavorite, setIsFavorite] = useState(favourited);
+    const obj = {id, parentId: id, price, title, imageUrl};
 
     const onClickPlus = () => {
-        onClickCartAdd({id, parentId: id, price, title, imageUrl});
+        onClickCartAdd(obj);
     }
 
     const onClickFav = () => {
-        onAddFavourite({id, parentId: id, price, title, imageUrl});
+        onAddFavourite(obj);
+        setIsFavorite(!isFavorite);
+    }
+    const onRemove = () => {
+        onClickFavRemove(obj)
     }
 
+    console.log(isItemFavAdded(id), id)
 
     return (
         <div className={s.card}>
@@ -54,8 +63,8 @@ function Card({
                     <rect x="0" y="203" rx="3" ry="3" width="59" height="24"/>
                     <rect x="130" y="195" rx="3" ry="3" width="32" height="32"/>
                 </ContentLoader> : <>
-                    <img className={s.inactiveBtn} src={isItemFavAdded(id) ? activeFav : inactiveFav} alt=""
-                         onClick={onClickFav}/>
+                    <img className={s.inactiveBtn} src={isFavorite ? activeFav : inactiveFav} alt=""
+                         onClick={isOnFavPage ? onRemove : onClickFav}/>
                     <img src={imageUrl} alt="snk" width="133" height="112"/>
                     <p>{title}</p>
                     <div className={s.snkInfo}>

@@ -10,7 +10,7 @@ function Home({
                   onAddFavourite,
                   sneakers,
                   loading,
-
+                  isItemFavAdded
               }) {
 
 
@@ -21,8 +21,9 @@ function Home({
                     key={i}
                     {...snk}
                     onClickCartAdd={onClickCartAdd}
-                    onAddFavourite={onAddFavourite}
+                    onAddFavourite={(obj) => onAddFavourite(obj)}
                     loading={loading}
+                    favourited={isItemFavAdded(snk && snk.id)}
                 />
             )
     }

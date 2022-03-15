@@ -5,14 +5,16 @@ import InfoBox from "../../components/common/InfoBox";
 import emptyFavs from "../../assets/emptyFavs.png"
 import {useNavigate} from "react-router-dom";
 
-function Favourites({onClickCartAdd, onAddFavourite}) {
+function Favourites({onClickCartAdd, onAddFavourite,isItemFavAdded}) {
 
     const {favouriteSneakers} = useContext(AppContext);
     let navigate = useNavigate();
 
-    const onClickBtn = () => {
+    const onClickHomeBtn = () => {
         navigate("/");
     }
+
+    // FIX FAVOURITES BUG
 
     return (
         <div className="content">
@@ -24,17 +26,22 @@ function Favourites({onClickCartAdd, onAddFavourite}) {
                     {
                         favouriteSneakers
                             .map((snk, i) => <Card key={i}
-                                                   {...snk}
+                                                   id={snk.id}
+                                                   parentId={snk.parentId}
+                                                   price={snk.price}
+                                                   title={snk.title}
                                                    imageUrl={snk.imageUrl}
                                                    onClickCartAdd={onClickCartAdd}
                                                    onAddFavourite={onAddFavourite}
                                                    favourited={true}
+                                                   isOnFavPage={true}
+
                             />)
                     }
                 </div> : <InfoBox title={"Закладок нет :("}
                                   text={"Вы ничего не добавляли в закладки"}
                                   image={emptyFavs}
-                                  onClick={onClickBtn}/>
+                                  onClick={onClickHomeBtn}/>
             }
 
         </div>
