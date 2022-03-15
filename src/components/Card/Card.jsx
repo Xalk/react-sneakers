@@ -20,13 +20,13 @@ function Card({
                   onAddFavourite,
                   loading = false,
                   favourited = false,
+                  isOnFavPage = false,
                   parentId,
-                  isOnFavPage,
                   ...props
               }) {
 
 
-    const {isItemCartAdded, isItemFavAdded, onClickFavRemove} = useContext(AppContext);
+    const {isItemCartAdded, onClickFavRemove} = useContext(AppContext);
     const [isFavorite, setIsFavorite] = useState(favourited);
     const obj = {id, parentId: id, price, title, imageUrl};
 
@@ -41,8 +41,6 @@ function Card({
     const onRemove = () => {
         onClickFavRemove(obj)
     }
-
-    console.log(isItemFavAdded(id), id)
 
     return (
         <div className={s.card}>
@@ -72,8 +70,12 @@ function Card({
                             <p>Цена:</p>
                             <strong>{price + " руб."}</strong>
                         </div>
-                        <img src={isItemCartAdded(id) ? plusActive : plusBtn} alt="plusBtn" className={s.plusBtn}
-                             onClick={onClickPlus}/>
+                        {
+                            onClickCartAdd &&
+                            <img src={isItemCartAdded(id) ? plusActive : plusBtn} alt="plusBtn" className={s.plusBtn}
+                                 onClick={onClickPlus}/>
+                        }
+
                     </div>
                 </>
             }

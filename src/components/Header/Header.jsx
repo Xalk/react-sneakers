@@ -38,9 +38,12 @@ function Header({onClickCart}) {
                     </div>
                 </Link>
 
-                <div className={s.user}>
-                    <img src={user} alt="user"/>
-                </div>
+                <Link to={"/orders"}>
+                    <div className={s.user}>
+                        <img src={user} alt="user"/>
+                    </div>
+                </Link>
+
             </div>
         </header>
     );

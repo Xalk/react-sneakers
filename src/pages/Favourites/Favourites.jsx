@@ -14,8 +14,6 @@ function Favourites({onClickCartAdd, onAddFavourite,isItemFavAdded}) {
         navigate("/");
     }
 
-    // FIX FAVOURITES BUG
-
     return (
         <div className="content">
             <div className="contentTop">

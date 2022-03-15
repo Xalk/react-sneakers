@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import {Route, Routes} from "react-router-dom";
 import Favourites from "./pages/Favourites/Favourites";
 import AppContext from "./context";
+import Orders from "./pages/Orders/Orders";
 
 function App() {
 
@@ -117,7 +118,9 @@ function App() {
             setIsCartOpened,
             cartSneakers,
             setCartSneakers,
-            onClickFavRemove
+            onClickFavRemove,
+            setLoading,
+            loading
         }}>
             <div className="wrapper">
                 {<Drawer onClickCloseCart={() => setIsCartOpened(false)}
@@ -146,6 +149,10 @@ function App() {
                                onClickCartAdd={onClickCartAdd}
                                onAddFavourite={onAddFavourite}
                            />}/>
+                    <Route path="/orders" exact
+                           element={<Orders/>}/>
+
+
                 </Routes>
 
 
