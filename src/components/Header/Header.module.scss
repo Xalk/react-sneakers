@@ -9,21 +9,11 @@ header {
 
 .leftSide {
   display: flex;
+  align-items: center;
+  gap: 10px;
   color: #000;
-
-  ul {
-    margin: 0;
-    padding-left: 16px;
-
-    li:first-child {
-      font-weight: 700;
-    }
-  }
 }
 
-.imgCart {
-  cursor: pointer;
-}
 
 .rightSide {
   display: flex;
@@ -33,9 +23,20 @@ header {
   .cart {
     display: flex;
     align-items: center;
+    cursor: pointer;
+
 
     span {
       margin-left: 10px;
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .rightSide {
+    gap: 18px;
+  }
+  .leftSide{
+    padding-right: 10px;
   }
 }

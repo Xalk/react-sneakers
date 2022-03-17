@@ -42,8 +42,8 @@ body {
 
 .sneakers {
   display: flex;
-  //justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 
@@ -51,10 +51,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 
   h1 {
     margin-bottom: 20px;
   }
+}
+
+.contentTop600{
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
 .searchBlock {
@@ -80,3 +86,11 @@ body {
 }
 
 
+@media (max-width: 600px) {
+  .sneakers {
+    flex: none;
+  }
+  .content{
+    padding: 10px;
+  }
+}

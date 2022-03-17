@@ -10,7 +10,8 @@ function Home({
                   onAddFavourite,
                   sneakers,
                   loading,
-                  isItemFavAdded
+                  isItemFavAdded,
+                  width
               }) {
 
 
@@ -31,13 +32,13 @@ function Home({
 
     return (
         <div className="content">
-            <div className="contentTop">
+            <div className={`contentTop ${width < 600 ? "contentTop600" : ""}`}>
                 {
-                    searchValue ? <h1>{`Поиск по запросу: "${searchValue}"`}</h1> : <h1>Все кроссовки</h1>
+                    searchValue ? <h1>{`Search by name: "${searchValue}"`}</h1> : <h1>All sneakers</h1>
                 }
                 <div className="searchBlock">
                     <img src={search} alt="search"/>
-                    <input type="text" placeholder="Поиск..." value={searchValue}
+                    <input type="text" placeholder="Search..." value={searchValue}
                            onChange={(e) => setSearchValue(e.target.value)}/>
                 </div>
             </div>

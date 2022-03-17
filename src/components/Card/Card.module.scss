@@ -4,7 +4,7 @@
   border: 1px solid #e7e7e7;
   box-sizing: border-box;
   border-radius: 40px;
-  max-width: 210px;
+  width: 20%;
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -57,8 +57,24 @@
     font-weight: 500;
     font-size: 11px;
     line-height: 13px;
-    text-transform: uppercase;
     color: #BDBDBD;
   }
 }
 
+@media (max-width: 1000px) {
+  .card {
+    width: 25%;
+  }
+}
+@media (max-width: 850px) {
+  .card {
+    width: 35%;
+  }
+}
+@media (max-width: 600px) {
+  .card {
+    max-width: 290px;
+    width: 80%;
+    margin: 0 40px 40px;
+  }
+}

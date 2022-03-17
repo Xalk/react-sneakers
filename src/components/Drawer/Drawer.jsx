@@ -52,7 +52,7 @@ function Drawer({onClickCloseCart, onClickCartRemove, isCartOpened}) {
         <div className={`${s.overlay} ${isCartOpened ? s.overlayOut : ""}`}>
             <div className={s.drawer}>
                 <div className={s.drawerTop}>
-                    <p>Корзина</p>
+                    <p>Shopping Cart</p>
                     <img src={removeCartItem} alt="closeCart" onClick={onClickCloseCart}/>
                 </div>
                 {
@@ -63,7 +63,7 @@ function Drawer({onClickCloseCart, onClickCartRemove, isCartOpened}) {
                                         <img src={sn.imageUrl} alt="snk1" width="70" height="70"/>
                                         <div className={s.cartInfo}>
                                             <p>{sn.title}</p>
-                                            <strong>{sn.price + " руб."}</strong>
+                                            <strong>{"$" + sn.price}</strong>
                                         </div>
                                         <button onClick={e => onClickCartRemove(sn)}>
                                             <img src={removeCartItem} alt=""/>
@@ -75,27 +75,27 @@ function Drawer({onClickCloseCart, onClickCartRemove, isCartOpened}) {
                             <div className={s.totalBlock}>
                                 <ul>
                                     <li>
-                                        <p>Итого:</p>
+                                        <p>Total:</p>
                                         <div></div>
-                                        <strong>{
+                                        <strong>${
                                             cartSneakers.reduce((res, item) => res + item.price, 0)
-                                        } руб.</strong>
+                                        }</strong>
                                     </li>
                                     <li>
-                                        <p>Налог 5%:</p>
+                                        <p>Tax 5%:</p>
                                         <div></div>
-                                        <strong>{
+                                        <strong>${
                                             (cartSneakers.reduce((res, item) => res + item.price, 0) * 0.05).toFixed(2)
-                                        } руб.</strong>
+                                        }</strong>
                                     </li>
                                 </ul>
-                                <button className={s.greenBtn} onClick={onClickOrder} disabled={isLoading}>Оформить заказ
+                                <button className={s.greenBtn} onClick={onClickOrder} disabled={isLoading}>Buy
                                     <img src={arrow} alt=""/></button>
                             </div>
                         </>
 
-                        : <InfoBox title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
-                                   text={isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
+                        : <InfoBox title={isOrderComplete ? "Order is processed!" : "Shopping Cart is empty"}
+                                   text={isOrderComplete ? `Your order #${orderId} will be delivered to courier delivery soon` : "Add at least one pair of sneakers to make an order."}
                                    image={isOrderComplete ? orderComplete : emptyBox}
                                    onClick={onCloseCart}
                         />

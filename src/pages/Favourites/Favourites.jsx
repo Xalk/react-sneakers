@@ -17,7 +17,7 @@ function Favourites({onClickCartAdd, onAddFavourite,isItemFavAdded}) {
     return (
         <div className="content">
             <div className="contentTop">
-                <h1>Избранные</h1>
+                <h1>Wish List</h1>
             </div>
             {
                 favouriteSneakers.length > 0 ? <div className="sneakers">
@@ -36,8 +36,8 @@ function Favourites({onClickCartAdd, onAddFavourite,isItemFavAdded}) {
 
                             />)
                     }
-                </div> : <InfoBox title={"Закладок нет :("}
-                                  text={"Вы ничего не добавляли в закладки"}
+                </div> : <InfoBox title={"Your Wish List is empty :("}
+                                  text={"You didn't bookmark anything"}
                                   image={emptyFavs}
                                   onClick={onClickHomeBtn}/>
             }

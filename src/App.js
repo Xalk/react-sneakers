@@ -10,6 +10,7 @@ import {Route, Routes} from "react-router-dom";
 import Favourites from "./pages/Favourites/Favourites";
 import AppContext from "./context";
 import Orders from "./pages/Orders/Orders";
+import useWindowDimensions from "./hooks/useWindowDimensions";
 
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
     const [searchValue, setSearchValue] = useState("");
     const [favouriteSneakers, setFavouriteSneakers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { height, width } = useWindowDimensions();
+
 
 
     useEffect(() => {
@@ -120,7 +123,8 @@ function App() {
             setCartSneakers,
             onClickFavRemove,
             setLoading,
-            loading
+            loading,
+            height, width
         }}>
             <div className="wrapper">
                 {<Drawer onClickCloseCart={() => setIsCartOpened(false)}
@@ -141,6 +145,7 @@ function App() {
                                                    cartSneakers={cartSneakers}
                                                    loading={loading}
                                                    isItemFavAdded={isItemFavAdded}
+                                                   width={width}
                     />}/>
 
 

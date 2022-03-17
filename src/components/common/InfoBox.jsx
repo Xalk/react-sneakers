@@ -13,7 +13,7 @@ const InfoBox = ({title, text, image, onClick}) => {
             <p>{text}</p>
             <button className={s.greenBtn} onClick={e => onClick()}>
                 <img src={arrow} alt=""/>
-                Вернуться назад
+                Back
             </button>
         </div>
     );
