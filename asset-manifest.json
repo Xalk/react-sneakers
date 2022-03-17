@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-sneakers/static/css/main.2b550724.css",
+    "main.js": "/react-sneakers/static/js/main.29a97f56.js",
+    "static/media/orderComplete.png": "/react-sneakers/static/media/orderComplete.28c53daaf8eec94f5429.png",
+    "static/media/fav-inactive.svg": "/react-sneakers/static/media/fav-inactive.3fbf988bb05f769032ecaab72e0c2728.svg",
+    "static/media/plus-active.svg": "/react-sneakers/static/media/plus-active.890c21e6e092e231b04d7f8d3b23767a.svg",
+    "static/media/favourites.svg": "/react-sneakers/static/media/favourites.25f26213df9d06335ae6995b4517dc9c.svg",
+    "static/media/fav-active.svg": "/react-sneakers/static/media/fav-active.2a7f884671a17364cb52939425ca405f.svg",
+    "static/media/user.svg": "/react-sneakers/static/media/user.381202f7e3edbc1a00b14fbd5e529a32.svg",
+    "static/media/cart.svg": "/react-sneakers/static/media/cart.5113b08fb682dc25f3856ef704a6c05d.svg",
+    "index.html": "/react-sneakers/index.html",
+    "static/media/search.svg": "/react-sneakers/static/media/search.48c52bf5d459537e27c07f88eb08c050.svg",
+    "static/media/removeCartItemBtn.svg": "/react-sneakers/static/media/removeCartItemBtn.b1fef0aa93fbf25374f4991d23f900d8.svg",
+    "static/media/plusBtn.svg": "/react-sneakers/static/media/plusBtn.b88e94c67ea7ac0cfa69033241c96b8c.svg",
+    "static/media/arrow.svg": "/react-sneakers/static/media/arrow.fc3222511ec5a224a4abf3bbf4c2566f.svg",
+    "main.2b550724.css.map": "/react-sneakers/static/css/main.2b550724.css.map",
+    "main.29a97f56.js.map": "/react-sneakers/static/js/main.29a97f56.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2b550724.css",
+    "static/js/main.29a97f56.js"
+  ]
+}
