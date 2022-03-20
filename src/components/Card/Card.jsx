@@ -3,9 +3,8 @@ import plusBtn from "../../assets/plusBtn.svg";
 import plusActive from "../../assets/plus-active.svg";
 
 
-import inactiveFav from "../../assets/fav-inactive.svg";
 import activeFav from "../../assets/fav-active.svg";
-import activeFav2 from "../../assets/fav2.jpg";
+import inactiveFav from "../../assets/fav2.jpg";
 
 
 import s from "./Card.module.scss";
@@ -51,7 +50,7 @@ function Card({
         <div className={s.card}>
             {
                 loading ? <SkeletonLoader width={width} props={props}/> : <>
-                        <img className={s.inactiveBtn} src={isFavorite ? activeFav : activeFav2} alt=""
+                        <img className={s.inactiveBtn} src={isFavorite ? activeFav : inactiveFav} alt=""
                              onClick={isOnFavPage ? onRemove : onClickFav}/>
                         <img src={imageUrl} alt="snk" className={s.snkImage}/>
                         <p>{title}</p>
